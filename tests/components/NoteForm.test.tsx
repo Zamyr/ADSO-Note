@@ -19,13 +19,13 @@ describe('NoteForm', () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
-        submitLabel="Create"
+        submitLabel="Crear"
         isSubmitting={false}
       />
     );
 
-    expect(screen.getByLabelText(/title/i)).toHaveValue('');
-    expect(screen.getByLabelText(/content/i)).toHaveValue('');
+    expect(screen.getByLabelText(/título/i)).toHaveValue('');
+    expect(screen.getByLabelText(/contenido/i)).toHaveValue('');
   });
 
   it('renderiza el formulario con datos iniciales', () => {
@@ -38,26 +38,26 @@ describe('NoteForm', () => {
       <NoteForm
         initialData={initialData}
         onSubmit={mockOnSubmit}
-        submitLabel="Update"
+        submitLabel="Actualizar"
         isSubmitting={false}
       />
     );
 
-    expect(screen.getByLabelText(/title/i)).toHaveValue('Test Title');
-    expect(screen.getByLabelText(/content/i)).toHaveValue('Test Content');
+    expect(screen.getByLabelText(/título/i)).toHaveValue('Test Title');
+    expect(screen.getByLabelText(/contenido/i)).toHaveValue('Test Content');
   });
 
   it('actualiza los campos del formulario cuando el usuario escribe', () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
-        submitLabel="Create"
+        submitLabel="Crear"
         isSubmitting={false}
       />
     );
 
-    const titleInput = screen.getByLabelText(/title/i);
-    const contentInput = screen.getByLabelText(/content/i);
+    const titleInput = screen.getByLabelText(/título/i);
+    const contentInput = screen.getByLabelText(/contenido/i);
 
     fireEvent.change(titleInput, { target: { value: 'New Title' } });
     fireEvent.change(contentInput, { target: { value: 'New Content' } });
@@ -70,12 +70,12 @@ describe('NoteForm', () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
-        submitLabel="Create"
+        submitLabel="Crear"
         isSubmitting={false}
       />
     );
 
-    const submitButton = screen.getByRole('button', { name: /create/i });
+    const submitButton = screen.getByRole('button', { name: /crear/i });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
@@ -90,18 +90,18 @@ describe('NoteForm', () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
-        submitLabel="Create"
+        submitLabel="Crear"
         isSubmitting={false}
       />
     );
 
-    const titleInput = screen.getByLabelText(/title/i);
+    const titleInput = screen.getByLabelText(/título/i);
     const longTitle = 'a'.repeat(256);
 
     fireEvent.change(titleInput, { target: { value: longTitle } });
-    fireEvent.change(screen.getByLabelText(/content/i), { target: { value: 'Valid content' } });
+    fireEvent.change(screen.getByLabelText(/contenido/i), { target: { value: 'Valid content' } });
 
-    const submitButton = screen.getByRole('button', { name: /create/i });
+    const submitButton = screen.getByRole('button', { name: /crear/i });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
@@ -117,15 +117,15 @@ describe('NoteForm', () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
-        submitLabel="Create"
+        submitLabel="Crear"
         isSubmitting={false}
       />
     );
 
-    fireEvent.change(screen.getByLabelText(/title/i), { target: { value: 'Valid Title' } });
-    fireEvent.change(screen.getByLabelText(/content/i), { target: { value: 'Valid Content' } });
+    fireEvent.change(screen.getByLabelText(/título/i), { target: { value: 'Valid Title' } });
+    fireEvent.change(screen.getByLabelText(/contenido/i), { target: { value: 'Valid Content' } });
 
-    const submitButton = screen.getByRole('button', { name: /create/i });
+    const submitButton = screen.getByRole('button', { name: /crear/i });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
@@ -140,39 +140,39 @@ describe('NoteForm', () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
-        submitLabel="Create"
+        submitLabel="Crear"
         isSubmitting={true}
       />
     );
 
-    expect(screen.getByLabelText(/title/i)).toBeDisabled();
-    expect(screen.getByLabelText(/content/i)).toBeDisabled();
-    expect(screen.getByRole('button', { name: /saving/i })).toBeDisabled();
-    expect(screen.getByRole('button', { name: /cancel/i })).toBeDisabled();
+    expect(screen.getByLabelText(/título/i)).toBeDisabled();
+    expect(screen.getByLabelText(/contenido/i)).toBeDisabled();
+    expect(screen.getByRole('button', { name: /guardando/i })).toBeDisabled();
+    expect(screen.getByRole('button', { name: /cancelar/i })).toBeDisabled();
   });
 
-  it('muestra texto "Saving..." cuando isSubmitting es true', () => {
+  it('muestra texto "Guardando..." cuando isSubmitting es true', () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
-        submitLabel="Create"
+        submitLabel="Crear"
         isSubmitting={true}
       />
     );
 
-    expect(screen.getByRole('button', { name: /saving/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /guardando/i })).toBeInTheDocument();
   });
 
   it('llama router.back() cuando se hace clic en el botón cancelar', () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
-        submitLabel="Create"
+        submitLabel="Crear"
         isSubmitting={false}
       />
     );
 
-    const cancelButton = screen.getByRole('button', { name: /cancel/i });
+    const cancelButton = screen.getByRole('button', { name: /cancelar/i });
     fireEvent.click(cancelButton);
 
     expect(mockRouter.back).toHaveBeenCalled();
@@ -182,17 +182,17 @@ describe('NoteForm', () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
-        submitLabel="Create"
+        submitLabel="Crear"
         isSubmitting={false}
       />
     );
 
-    const submitButton = screen.getByRole('button', { name: /create/i });
+    const submitButton = screen.getByRole('button', { name: /crear/i });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      const titleInput = screen.getByLabelText(/title/i);
-      const contentInput = screen.getByLabelText(/content/i);
+      const titleInput = screen.getByLabelText(/título/i);
+      const contentInput = screen.getByLabelText(/contenido/i);
 
       expect(titleInput).toHaveClass('border-red-500');
       expect(contentInput).toHaveClass('border-red-500');

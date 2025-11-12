@@ -23,13 +23,13 @@ describe('NewNotePage', () => {
 
   it('renderiza el título de la página', () => {
     render(<NewNotePage />);
-    expect(screen.getByText('Create New Note')).toBeInTheDocument();
+    expect(screen.getByText('Crear Nueva Nota')).toBeInTheDocument();
   });
 
   it('renderiza el componente NoteForm', () => {
     render(<NewNotePage />);
-    expect(screen.getByLabelText(/title/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/content/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/título/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/contenido/i)).toBeInTheDocument();
   });
 
   it('llama createNote y navega en envío exitoso', async () => {
@@ -37,10 +37,10 @@ describe('NewNotePage', () => {
 
     render(<NewNotePage />);
 
-    fireEvent.change(screen.getByLabelText(/title/i), { target: { value: 'New Note' } });
-    fireEvent.change(screen.getByLabelText(/content/i), { target: { value: 'Note content' } });
+    fireEvent.change(screen.getByLabelText(/título/i), { target: { value: 'New Note' } });
+    fireEvent.change(screen.getByLabelText(/contenido/i), { target: { value: 'Note content' } });
 
-    const submitButton = screen.getByRole('button', { name: /create note/i });
+    const submitButton = screen.getByRole('button', { name: /crear nota/i });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
@@ -63,7 +63,7 @@ describe('NewNotePage', () => {
 
     render(<NewNotePage />);
 
-    expect(screen.getByRole('button', { name: /saving/i })).toBeDisabled();
+    expect(screen.getByRole('button', { name: /guardando/i })).toBeDisabled();
   });
 
   it('aplica estilos de tema oscuro', () => {

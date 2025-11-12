@@ -16,15 +16,15 @@ describe('NotesPage', () => {
   const mockNotes: Note[] = [
     {
       id: 1,
-      title: 'First Note',
-      content: 'First note content',
+      title: 'Primera Nota',
+      content: 'Contenido de la primera nota',
       createdAt: new Date('2025-11-10T10:00:00Z'),
       updatedAt: new Date('2025-11-10T10:00:00Z'),
     },
     {
       id: 2,
-      title: 'Second Note',
-      content: 'Second note content',
+      title: 'Segunda Nota',
+      content: 'Contenido de la segunda nota',
       createdAt: new Date('2025-11-09T10:00:00Z'),
       updatedAt: new Date('2025-11-09T10:00:00Z'),
     },
@@ -44,7 +44,7 @@ describe('NotesPage', () => {
 
     const { container } = render(<NotesPage />);
 
-    expect(screen.getByText('Loading notes...')).toBeInTheDocument();
+    expect(screen.getByText('Cargando notas...')).toBeInTheDocument();
     expect(container.querySelector('.animate-spin')).toBeInTheDocument();
   });
 
@@ -58,7 +58,7 @@ describe('NotesPage', () => {
 
     render(<NotesPage />);
 
-    expect(screen.getByText('Error Loading Notes')).toBeInTheDocument();
+    expect(screen.getByText('Error al Cargar Notas')).toBeInTheDocument();
     expect(screen.getByText('Failed to fetch')).toBeInTheDocument();
   });
 
@@ -72,8 +72,8 @@ describe('NotesPage', () => {
 
     render(<NotesPage />);
 
-    expect(screen.getByText('No notes yet. Create your first note!')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /create note/i })).toHaveAttribute('href', '/notes/new');
+    expect(screen.getByText('No hay notas aún. ¡Crea tu primera nota!')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /crear nota/i })).toHaveAttribute('href', '/notes/new');
   });
 
   it('renderiza la lista de notas', () => {
@@ -86,9 +86,9 @@ describe('NotesPage', () => {
 
     render(<NotesPage />);
 
-    expect(screen.getByText('My Notes')).toBeInTheDocument();
-    expect(screen.getByText('First Note')).toBeInTheDocument();
-    expect(screen.getByText('Second Note')).toBeInTheDocument();
+    expect(screen.getByText('Mis Notas')).toBeInTheDocument();
+    expect(screen.getByText('Primera Nota')).toBeInTheDocument();
+    expect(screen.getByText('Segunda Nota')).toBeInTheDocument();
   });
 
   it('renderiza el botón New Note en el header', () => {
@@ -101,7 +101,7 @@ describe('NotesPage', () => {
 
     render(<NotesPage />);
 
-    const newNoteButton = screen.getByRole('link', { name: /new note/i });
+    const newNoteButton = screen.getByRole('link', { name: /nueva nota/i });
     expect(newNoteButton).toHaveAttribute('href', '/notes/new');
   });
 
