@@ -53,13 +53,13 @@ describe('NotesPage', () => {
       data: undefined,
       isLoading: false,
       isError: true,
-      error: new Error('Failed to fetch'),
+      error: new Error('Error al obtener datos'),
     });
 
     render(<NotesPage />);
 
     expect(screen.getByText('Error al Cargar Notas')).toBeInTheDocument();
-    expect(screen.getByText('Failed to fetch')).toBeInTheDocument();
+    expect(screen.getByText('Error al obtener datos')).toBeInTheDocument();
   });
 
   it('muestra estado vacío cuando no hay notas', () => {

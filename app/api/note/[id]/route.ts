@@ -13,19 +13,19 @@ export async function GET(
     const noteId = parseInt(id, 10);
 
     if (isNaN(noteId)) {
-      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+      return NextResponse.json({ error: 'ID inválido' }, { status: 400 });
     }
 
     const note = await noteRepository.findById(noteId);
 
     if (!note) {
-      return NextResponse.json({ error: 'Note not found' }, { status: 404 });
+      return NextResponse.json({ error: 'Nota no encontrada' }, { status: 404 });
     }
 
     return NextResponse.json(note, { status: 200 });
   } catch {
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Error interno del servidor' },
       { status: 500 }
     );
   }
@@ -40,7 +40,7 @@ export async function PATCH(
     const noteId = parseInt(id, 10);
 
     if (isNaN(noteId)) {
-      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+      return NextResponse.json({ error: 'ID inválido' }, { status: 400 });
     }
 
     const body = await request.json();
@@ -55,11 +55,11 @@ export async function PATCH(
     }
 
     if (error instanceof Error && error.message.includes('Record to update not found')) {
-      return NextResponse.json({ error: 'Note not found' }, { status: 404 });
+      return NextResponse.json({ error: 'Nota no encontrada' }, { status: 404 });
     }
 
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Error interno del servidor' },
       { status: 500 }
     );
   }

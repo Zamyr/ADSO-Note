@@ -1,12 +1,12 @@
 import * as yup from 'yup';
 
 export const createNoteSchema = yup.object({
-  title: yup.string().required('Title is required').max(255, 'Title too long'),
-  content: yup.string().required('Content is required'),
+  title: yup.string().required('El título es requerido').max(255, 'Título demasiado largo'),
+  content: yup.string().required('El contenido es requerido'),
 });
 
 export const updateNoteSchema = yup.object({
-  title: yup.string().max(255, 'Title too long').optional(),
+  title: yup.string().max(255, 'Título demasiado largo').optional(),
   content: yup.string().optional(),
 });
 

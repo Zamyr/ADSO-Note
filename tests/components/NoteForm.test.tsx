@@ -30,8 +30,8 @@ describe('NoteForm', () => {
 
   it('renderiza el formulario con datos iniciales', () => {
     const initialData = {
-      title: 'Test Title',
-      content: 'Test Content',
+      title: 'Título de Prueba',
+      content: 'Contenido de Prueba',
     };
 
     render(
@@ -43,8 +43,8 @@ describe('NoteForm', () => {
       />
     );
 
-    expect(screen.getByLabelText(/título/i)).toHaveValue('Test Title');
-    expect(screen.getByLabelText(/contenido/i)).toHaveValue('Test Content');
+    expect(screen.getByLabelText(/título/i)).toHaveValue('Título de Prueba');
+    expect(screen.getByLabelText(/contenido/i)).toHaveValue('Contenido de Prueba');
   });
 
   it('actualiza los campos del formulario cuando el usuario escribe', () => {
@@ -59,11 +59,11 @@ describe('NoteForm', () => {
     const titleInput = screen.getByLabelText(/título/i);
     const contentInput = screen.getByLabelText(/contenido/i);
 
-    fireEvent.change(titleInput, { target: { value: 'New Title' } });
-    fireEvent.change(contentInput, { target: { value: 'New Content' } });
+    fireEvent.change(titleInput, { target: { value: 'Título Nuevo' } });
+    fireEvent.change(contentInput, { target: { value: 'Contenido Nuevo' } });
 
-    expect(titleInput).toHaveValue('New Title');
-    expect(contentInput).toHaveValue('New Content');
+    expect(titleInput).toHaveValue('Título Nuevo');
+    expect(contentInput).toHaveValue('Contenido Nuevo');
   });
 
   it('muestra errores de validación para campos vacíos', async () => {
@@ -79,8 +79,8 @@ describe('NoteForm', () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getByText('Title is required')).toBeInTheDocument();
-      expect(screen.getByText('Content is required')).toBeInTheDocument();
+      expect(screen.getByText('El título es requerido')).toBeInTheDocument();
+      expect(screen.getByText('El contenido es requerido')).toBeInTheDocument();
     });
 
     expect(mockOnSubmit).not.toHaveBeenCalled();
@@ -99,13 +99,13 @@ describe('NoteForm', () => {
     const longTitle = 'a'.repeat(256);
 
     fireEvent.change(titleInput, { target: { value: longTitle } });
-    fireEvent.change(screen.getByLabelText(/contenido/i), { target: { value: 'Valid content' } });
+    fireEvent.change(screen.getByLabelText(/contenido/i), { target: { value: 'Contenido válido' } });
 
     const submitButton = screen.getByRole('button', { name: /crear/i });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getByText('Title too long')).toBeInTheDocument();
+      expect(screen.getByText('Título demasiado largo')).toBeInTheDocument();
     });
 
     expect(mockOnSubmit).not.toHaveBeenCalled();
@@ -122,16 +122,16 @@ describe('NoteForm', () => {
       />
     );
 
-    fireEvent.change(screen.getByLabelText(/título/i), { target: { value: 'Valid Title' } });
-    fireEvent.change(screen.getByLabelText(/contenido/i), { target: { value: 'Valid Content' } });
+    fireEvent.change(screen.getByLabelText(/título/i), { target: { value: 'Título Válido' } });
+    fireEvent.change(screen.getByLabelText(/contenido/i), { target: { value: 'Contenido Válido' } });
 
     const submitButton = screen.getByRole('button', { name: /crear/i });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
       expect(mockOnSubmit).toHaveBeenCalledWith({
-        title: 'Valid Title',
-        content: 'Valid Content',
+        title: 'Título Válido',
+        content: 'Contenido Válido',
       });
     });
   });

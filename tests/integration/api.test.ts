@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/db/prisma';
 
-describe('API Endpoints Integration', () => {
+describe('Integración de Endpoints API', () => {
   const baseUrl = 'http://localhost:3000/api';
 
   afterEach(async () => {
@@ -12,13 +12,13 @@ describe('API Endpoints Integration', () => {
   });
 
   describe('POST /api/notes', () => {
-    it('should create a note and return 201 with id', async () => {
+    it('debería crear una nota y retornar 201 con id', async () => {
       const response = await fetch(`${baseUrl}/notes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          title: 'Integration Test Note',
-          content: 'This is a test',
+          title: 'Nota de Prueba de Integración',
+          content: 'Este es un test',
         }),
       });
 
@@ -29,11 +29,11 @@ describe('API Endpoints Integration', () => {
       expect(typeof data.id).toBe('number');
     });
 
-    it('should return 400 when title is missing', async () => {
+    it('debería retornar 400 cuando falta el título', async () => {
       const response = await fetch(`${baseUrl}/notes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: 'No title' }),
+        body: JSON.stringify({ content: 'Sin título' }),
       });
 
       expect(response.status).toBe(400);
@@ -41,17 +41,17 @@ describe('API Endpoints Integration', () => {
   });
 
   describe('GET /api/notes', () => {
-    it('should return all notes', async () => {
+    it('debería retornar todas las notas', async () => {
       await fetch(`${baseUrl}/notes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: 'Note 1', content: 'Content 1' }),
+        body: JSON.stringify({ title: 'Nota 1', content: 'Contenido 1' }),
       });
 
       await fetch(`${baseUrl}/notes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: 'Note 2', content: 'Content 2' }),
+        body: JSON.stringify({ title: 'Nota 2', content: 'Contenido 2' }),
       });
 
       const response = await fetch(`${baseUrl}/notes`);
@@ -64,11 +64,11 @@ describe('API Endpoints Integration', () => {
   });
 
   describe('GET /api/note/:id', () => {
-    it('should return note by id', async () => {
+    it('debería retornar nota por id', async () => {
       const createResponse = await fetch(`${baseUrl}/notes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: 'Find Me', content: 'Content' }),
+        body: JSON.stringify({ title: 'Encuéntrame', content: 'Contenido' }),
       });
 
       const { id } = await createResponse.json();
@@ -78,17 +78,17 @@ describe('API Endpoints Integration', () => {
 
       expect(response.status).toBe(200);
       expect(data.id).toBe(id);
-      expect(data.title).toBe('Find Me');
+      expect(data.title).toBe('Encuéntrame');
     });
 
-    it('should return 404 when note does not exist', async () => {
+    it('debería retornar 404 cuando la nota no existe', async () => {
       const response = await fetch(`${baseUrl}/note/999999`);
       expect(response.status).toBe(404);
     });
   });
 
   describe('PATCH /api/note/:id', () => {
-    it('should update note', async () => {
+    it('debería actualizar nota', async () => {
       const createResponse = await fetch(`${baseUrl}/notes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -100,21 +100,21 @@ describe('API Endpoints Integration', () => {
       const response = await fetch(`${baseUrl}/note/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: 'Updated' }),
+        body: JSON.stringify({ title: 'Actualizado' }),
       });
 
       const data = await response.json();
 
       expect(response.status).toBe(200);
-      expect(data.title).toBe('Updated');
+      expect(data.title).toBe('Actualizado');
       expect(data.content).toBe('Original');
     });
 
-    it('should return 404 when updating non-existent note', async () => {
+    it('debería retornar 404 cuando se actualiza nota inexistente', async () => {
       const response = await fetch(`${baseUrl}/note/999999`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: 'Updated' }),
+        body: JSON.stringify({ title: 'Actualizado' }),
       });
 
       expect(response.status).toBe(404);
