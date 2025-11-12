@@ -12,7 +12,7 @@ export default function NotesPage() {
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-          <p className="text-gray-300">Loading notes...</p>
+          <p className="text-gray-300">Cargando notas...</p>
         </div>
       </div>
     );
@@ -22,9 +22,9 @@ export default function NotesPage() {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="bg-red-900 border border-red-700 rounded-lg p-6 max-w-md">
-          <h2 className="text-red-200 font-semibold mb-2">Error Loading Notes</h2>
+          <h2 className="text-red-200 font-semibold mb-2">Error al Cargar Notas</h2>
           <p className="text-red-300 text-sm">
-            {error instanceof Error ? error.message : 'Something went wrong'}
+            {error instanceof Error ? error.message : 'Algo salió mal'}
           </p>
         </div>
       </div>
@@ -35,23 +35,23 @@ export default function NotesPage() {
     <div className="min-h-screen bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-white">My Notes</h1>
+          <h1 className="text-3xl font-bold text-white">Mis Notas</h1>
           <Link
             href="/notes/new"
             className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
           >
-            New Note
+            Nueva Nota
           </Link>
         </div>
 
         {notes && notes.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-400 mb-4">No notes yet. Create your first note!</p>
+            <p className="text-gray-400 mb-4">No hay notas aún. ¡Crea tu primera nota!</p>
             <Link
               href="/notes/new"
               className="text-blue-400 hover:text-blue-300 font-medium"
             >
-              Create Note
+              Crear Nota
             </Link>
           </div>
         ) : (

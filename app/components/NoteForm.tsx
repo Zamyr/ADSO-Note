@@ -49,7 +49,7 @@ export function NoteForm({
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
         <label htmlFor="title" className="block text-sm font-medium text-gray-200 mb-2">
-          Title
+          Título
         </label>
         <input
           type="text"
@@ -59,7 +59,7 @@ export function NoteForm({
           className={`w-full px-4 py-2 bg-gray-700 text-white border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 ${
             errors.title ? 'border-red-500' : 'border-gray-600'
           }`}
-          placeholder="Enter note title"
+          placeholder="Ingresa el título de la nota"
           disabled={isSubmitting}
         />
         {errors.title && <p className="mt-1 text-sm text-red-400">{errors.title}</p>}
@@ -67,7 +67,7 @@ export function NoteForm({
 
       <div>
         <label htmlFor="content" className="block text-sm font-medium text-gray-200 mb-2">
-          Content
+          Contenido
         </label>
         <textarea
           id="content"
@@ -77,7 +77,7 @@ export function NoteForm({
           className={`w-full px-4 py-2 bg-gray-700 text-white border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none placeholder-gray-400 ${
             errors.content ? 'border-red-500' : 'border-gray-600'
           }`}
-          placeholder="Enter note content"
+          placeholder="Ingresa el contenido de la nota"
           disabled={isSubmitting}
         />
         {errors.content && <p className="mt-1 text-sm text-red-400">{errors.content}</p>}
@@ -89,7 +89,7 @@ export function NoteForm({
           disabled={isSubmitting}
           className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-medium py-2 px-4 rounded-lg transition-colors"
         >
-          {isSubmitting ? 'Saving...' : submitLabel}
+          {isSubmitting ? 'Guardando...' : submitLabel}
         </button>
         <button
           type="button"
@@ -97,7 +97,7 @@ export function NoteForm({
           disabled={isSubmitting}
           className="flex-1 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 text-gray-200 font-medium py-2 px-4 rounded-lg transition-colors"
         >
-          Cancel
+          Cancelar
         </button>
       </div>
     </form>

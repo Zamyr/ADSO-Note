@@ -8,7 +8,7 @@ interface NoteCardProps {
 }
 
 export function NoteCard({ note }: NoteCardProps) {
-  const formattedDate = new Date(note.createdAt).toLocaleDateString('en-US', {
+  const formattedDate = new Date(note.createdAt).toLocaleDateString('es-ES', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
@@ -24,7 +24,7 @@ export function NoteCard({ note }: NoteCardProps) {
           href={`/notes/${note.id}/edit`}
           className="text-blue-400 hover:text-blue-300 text-sm font-medium"
         >
-          Edit
+          Editar
         </Link>
       </div>
       <p className="text-gray-300 text-sm line-clamp-3 mb-4">{note.content}</p>
