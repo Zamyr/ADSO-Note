@@ -34,7 +34,7 @@ describe('NotesPage', () => {
     jest.clearAllMocks();
   });
 
-  it('shows loading state', () => {
+  it('muestra estado de carga', () => {
     (useNotes as jest.Mock).mockReturnValue({
       data: undefined,
       isLoading: true,
@@ -48,7 +48,7 @@ describe('NotesPage', () => {
     expect(container.querySelector('.animate-spin')).toBeInTheDocument();
   });
 
-  it('shows error state', () => {
+  it('muestra estado de error', () => {
     (useNotes as jest.Mock).mockReturnValue({
       data: undefined,
       isLoading: false,
@@ -62,7 +62,7 @@ describe('NotesPage', () => {
     expect(screen.getByText('Failed to fetch')).toBeInTheDocument();
   });
 
-  it('shows empty state when no notes', () => {
+  it('muestra estado vacío cuando no hay notas', () => {
     (useNotes as jest.Mock).mockReturnValue({
       data: [],
       isLoading: false,
@@ -76,7 +76,7 @@ describe('NotesPage', () => {
     expect(screen.getByRole('link', { name: /create note/i })).toHaveAttribute('href', '/notes/new');
   });
 
-  it('renders list of notes', () => {
+  it('renderiza la lista de notas', () => {
     (useNotes as jest.Mock).mockReturnValue({
       data: mockNotes,
       isLoading: false,
@@ -91,7 +91,7 @@ describe('NotesPage', () => {
     expect(screen.getByText('Second Note')).toBeInTheDocument();
   });
 
-  it('renders New Note button in header', () => {
+  it('renderiza el botón New Note en el header', () => {
     (useNotes as jest.Mock).mockReturnValue({
       data: mockNotes,
       isLoading: false,
@@ -105,7 +105,7 @@ describe('NotesPage', () => {
     expect(newNoteButton).toHaveAttribute('href', '/notes/new');
   });
 
-  it('applies dark theme styles', () => {
+  it('aplica estilos de tema oscuro', () => {
     (useNotes as jest.Mock).mockReturnValue({
       data: mockNotes,
       isLoading: false,

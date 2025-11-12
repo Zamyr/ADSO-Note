@@ -11,28 +11,28 @@ describe('NoteCard', () => {
     updatedAt: new Date('2025-11-10T10:00:00Z'),
   };
 
-  it('renders note title', () => {
+  it('renderiza el título de la nota', () => {
     render(<NoteCard note={mockNote} />);
     expect(screen.getByText('Test Note')).toBeInTheDocument();
   });
 
-  it('renders note content', () => {
+  it('renderiza el contenido de la nota', () => {
     render(<NoteCard note={mockNote} />);
     expect(screen.getByText('This is test content for the note')).toBeInTheDocument();
   });
 
-  it('renders formatted date', () => {
+  it('renderiza la fecha formateada', () => {
     render(<NoteCard note={mockNote} />);
     expect(screen.getByText('Nov 10, 2025')).toBeInTheDocument();
   });
 
-  it('renders edit link with correct href', () => {
+  it('renderiza el enlace de edición con href correcto', () => {
     render(<NoteCard note={mockNote} />);
     const editLink = screen.getByRole('link', { name: /edit/i });
     expect(editLink).toHaveAttribute('href', '/notes/1/edit');
   });
 
-  it('truncates long title with line-clamp-1', () => {
+  it('trunca títulos largos con line-clamp-1', () => {
     const longTitleNote: Note = {
       ...mockNote,
       title: 'This is a very long title that should be truncated with line clamp',
@@ -42,7 +42,7 @@ describe('NoteCard', () => {
     expect(titleElement).toBeInTheDocument();
   });
 
-  it('truncates long content with line-clamp-3', () => {
+  it('trunca contenido largo con line-clamp-3', () => {
     const longContentNote: Note = {
       ...mockNote,
       content: 'This is a very long content that should be truncated. '.repeat(10),
@@ -52,7 +52,7 @@ describe('NoteCard', () => {
     expect(contentElement).toBeInTheDocument();
   });
 
-  it('applies dark theme styles', () => {
+  it('aplica estilos de tema oscuro', () => {
     const { container } = render(<NoteCard note={mockNote} />);
     const card = container.firstChild;
     expect(card).toHaveClass('bg-gray-800', 'border-gray-700');

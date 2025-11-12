@@ -15,7 +15,7 @@ describe('NoteForm', () => {
     (useRouter as jest.Mock).mockReturnValue(mockRouter);
   });
 
-  it('renders form with empty fields by default', () => {
+  it('renderiza el formulario con campos vacíos por defecto', () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
@@ -28,7 +28,7 @@ describe('NoteForm', () => {
     expect(screen.getByLabelText(/content/i)).toHaveValue('');
   });
 
-  it('renders form with initial data', () => {
+  it('renderiza el formulario con datos iniciales', () => {
     const initialData = {
       title: 'Test Title',
       content: 'Test Content',
@@ -47,7 +47,7 @@ describe('NoteForm', () => {
     expect(screen.getByLabelText(/content/i)).toHaveValue('Test Content');
   });
 
-  it('updates form fields on user input', () => {
+  it('actualiza los campos del formulario cuando el usuario escribe', () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
@@ -66,7 +66,7 @@ describe('NoteForm', () => {
     expect(contentInput).toHaveValue('New Content');
   });
 
-  it('shows validation errors for empty fields', async () => {
+  it('muestra errores de validación para campos vacíos', async () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
@@ -86,7 +86,7 @@ describe('NoteForm', () => {
     expect(mockOnSubmit).not.toHaveBeenCalled();
   });
 
-  it('shows validation error for title exceeding 255 characters', async () => {
+  it('muestra error de validación para título que excede 255 caracteres', async () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
@@ -111,7 +111,7 @@ describe('NoteForm', () => {
     expect(mockOnSubmit).not.toHaveBeenCalled();
   });
 
-  it('calls onSubmit with form data on valid submission', async () => {
+  it('llama onSubmit con los datos del formulario en envío válido', async () => {
     mockOnSubmit.mockResolvedValue(undefined);
 
     render(
@@ -136,7 +136,7 @@ describe('NoteForm', () => {
     });
   });
 
-  it('disables inputs and button when isSubmitting is true', () => {
+  it('deshabilita inputs y botón cuando isSubmitting es true', () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
@@ -151,7 +151,7 @@ describe('NoteForm', () => {
     expect(screen.getByRole('button', { name: /cancel/i })).toBeDisabled();
   });
 
-  it('shows "Saving..." text when isSubmitting is true', () => {
+  it('muestra texto "Saving..." cuando isSubmitting es true', () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
@@ -163,7 +163,7 @@ describe('NoteForm', () => {
     expect(screen.getByRole('button', { name: /saving/i })).toBeInTheDocument();
   });
 
-  it('calls router.back() when cancel button is clicked', () => {
+  it('llama router.back() cuando se hace clic en el botón cancelar', () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}
@@ -178,7 +178,7 @@ describe('NoteForm', () => {
     expect(mockRouter.back).toHaveBeenCalled();
   });
 
-  it('applies error styling to fields with validation errors', async () => {
+  it('aplica estilos de error a campos con errores de validación', async () => {
     render(
       <NoteForm
         onSubmit={mockOnSubmit}

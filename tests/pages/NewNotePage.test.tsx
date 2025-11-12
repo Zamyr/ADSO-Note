@@ -21,18 +21,18 @@ describe('NewNotePage', () => {
     });
   });
 
-  it('renders page title', () => {
+  it('renderiza el título de la página', () => {
     render(<NewNotePage />);
     expect(screen.getByText('Create New Note')).toBeInTheDocument();
   });
 
-  it('renders NoteForm component', () => {
+  it('renderiza el componente NoteForm', () => {
     render(<NewNotePage />);
     expect(screen.getByLabelText(/title/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/content/i)).toBeInTheDocument();
   });
 
-  it('calls createNote and navigates on successful submission', async () => {
+  it('llama createNote y navega en envío exitoso', async () => {
     mockMutateAsync.mockResolvedValue({ id: 1 });
 
     render(<NewNotePage />);
@@ -55,7 +55,7 @@ describe('NewNotePage', () => {
     });
   });
 
-  it('shows loading state during submission', () => {
+  it('muestra estado de carga durante el envío', () => {
     (useCreateNote as jest.Mock).mockReturnValue({
       mutateAsync: mockMutateAsync,
       isPending: true,
@@ -66,7 +66,7 @@ describe('NewNotePage', () => {
     expect(screen.getByRole('button', { name: /saving/i })).toBeDisabled();
   });
 
-  it('applies dark theme styles', () => {
+  it('aplica estilos de tema oscuro', () => {
     const { container } = render(<NewNotePage />);
     expect(container.querySelector('.bg-gray-900')).toBeInTheDocument();
     expect(container.querySelector('.bg-gray-800')).toBeInTheDocument();
